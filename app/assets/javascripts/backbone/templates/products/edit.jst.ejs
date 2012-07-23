@@ -1,0 +1,35 @@
+<h1>Edit product</h1>
+
+<form id="edit-product" name="product">
+  <div class="field">
+    <label for="name"> name:</label>
+    <input type="text" name="name" id="name" value="<%= name %>" >
+  </div>
+
+  <div class="field">
+    <label for="price"> price:</label>
+    <input type="text" name="price" id="price" value="<%= price %>" >
+  </div>
+
+  <div class="field">
+    <label for="description"> description:</label>
+    <input type="text" name="description" id="description" value="<%= description %>" >
+  </div>
+
+  <div class="field">
+    <label for="location"> location:</label>
+    <input type="text" name="location" id="location" value="<%= location %>" >
+  </div>
+
+  <div class="field">
+    <label for="seller"> seller:</label>
+    <input type="text" name="seller" id="seller" value="<%= seller %>" >
+  </div>
+
+  <div class="actions">
+    <input type="submit" value="Update Products" />
+  </div>
+
+</form>
+
+<a href="#/index">Back</a>

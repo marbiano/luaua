@@ -1,0 +1,33 @@
+<form id="new-product" name="product" class="product">
+  <div class="image">
+    <div class="empty-image">
+      <h2>Saca una foto y subela</h2>
+      <p>Que sea de tu producto real, ¡no vale foto de catalogo!
+    </div>
+  </div>
+  <div class="details">
+    <div class="field">
+      <input type="text" name="name" id="name" value="<%= name %>" title="Titulo" />
+    </div>
+
+    <div class="field price">
+      <span class="currency">$</span> <input type="text" name="price" id="price" value="<%= price %>" title="Precio" />
+    </div>
+
+    <div class="field">
+      <textarea name="description" id="description" value="<%= description %>" title="Descripcion" />
+    </div>
+
+    <div class="field">
+      <input type="text" name="location" id="location" value="<%= location %>" title="Donde" />
+    </div>
+
+    <div class="field">
+      <input type="text" name="seller" id="seller" value="<%= seller %>" title="Vendedor" >
+    </div>
+    <div class="actions">
+      <input type="submit" value="Crear aviso" />
+    </div>
+  </div>
+
+</form>
