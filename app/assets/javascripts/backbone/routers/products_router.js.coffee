@@ -4,30 +4,34 @@ class Luaua.Routers.ProductsRouter extends Backbone.Router
     #@products.reset options.products
 
   routes:
-    "new"      : "newProducts"
+    "new"      : "new"
     "index"    : "index"
     ":id/edit" : "edit"
     ":id"      : "show"
     ".*"        : "index"
 
-  newProducts: ->
-    @view = new Luaua.Views.Products.NewView(collection: @products)
-    $("#main").fadeOut 500, =>
-      $("#main").html(@view.render().el).fadeIn 500, ->
-        $(".field input").jLabel()
-        $(".field textarea").jLabel({yShift: 3})
 
   index: ->
     #@view = new Luaua.Views.Products.IndexView(products: @products)
     #$("#products").html(@view.render().el)
     @view = new Luaua.Views.Products.IndexView()
-    $("#main").html(@view.render().el)
+    $(".main").html(@view.render().el)
+
+  new: ->
+    @view = new Luaua.Views.Products.NewView({ product : new Luaua.Models.Product })
+    $(".main").fadeOut 500, =>
+      $(".main").html(@view.render().el).fadeIn 500, ->
+        $(".field input").jLabel()
+        $(".field textarea").jLabel({yShift: 3})
 
   show: (id) ->
-    products = @products.get(id)
-
-    @view = new Luaua.Views.Products.ShowView(model: products)
-    $("#products").html(@view.render().el)
+    product = new Luaua.Models.Product({ id : id })
+    product.fetch(
+      success: (model, response) =>
+        @view = new Luaua.Views.Products.ShowView({ product : model })
+        $(".main").fadeOut 500, =>
+          $(".main").html(@view.render().el).fadeIn 500
+    )
 
   edit: (id) ->
     products = @products.get(id)

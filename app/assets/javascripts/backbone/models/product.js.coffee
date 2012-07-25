@@ -1,5 +1,5 @@
-class Luaua.Models.Products extends Backbone.Model
-  paramRoot: 'product'
+class Luaua.Models.Product extends Backbone.Model
+  urlRoot: '/products'
 
   defaults:
     name: null
@@ -7,7 +7,9 @@ class Luaua.Models.Products extends Backbone.Model
     description: null
     location: null
     seller: null
+    image: null
+    remote_image_url: null
 
 class Luaua.Collections.ProductsCollection extends Backbone.Collection
-  model: Luaua.Models.Products
+  model: Luaua.Models.Product
   url: '/products'

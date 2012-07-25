@@ -1,27 +1,16 @@
-<p>
-  <b>Name:</b>
-  <%= name %>
-</p>
-
-<p>
-  <b>Price:</b>
-  <%= price %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= description %>
-</p>
-
-<p>
-  <b>Location:</b>
-  <%= location %>
-</p>
-
-<p>
-  <b>Seller:</b>
-  <%= seller %>
-</p>
-
-
-<a href="#/index">Back</a>
+<div class="product">
+  <div class="image">
+    <img src="<%= image.url %>" />
+  </div>
+  <div class="details">
+    <h1><%= name %></h1>
+    <p class="price"><span class="currency">$</span><%= price %></p>
+    <p class="descripcion"><%= description %></p>
+    <dl>
+    	<dt>Donde</dt>
+    	<dd><%= location %></dd>
+    	<dt>Vendedor</dt>
+    	<dd><a href="#"><%= seller %></a></dd>
+    	<dt>Compartir</dt>
+    	<dd><a href="#" class="share-twitter">Twitter</a> / <a href="#" class="share-facebook">Facebook</a> / <a href="#" class="share-email">Email</a></dd>
+</div>
