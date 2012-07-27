@@ -35,39 +35,60 @@ class Luaua.Views.Products.NewView extends Backbone.View
     this.$("form").backboneLink(@product)
 
     filepicker.setKey('A52AbeLP1S6uDTUT00RBNz')
-    featherEditor = new Aviary.Feather(
-      apiKey: 'd6671c0d5'
-      apiVersion: 2
-      appendTo: ""
-      cropPresets: ["4:3"]
-      fileFormat: "png"
-      onSave: (imageID, newURL) =>
-        featherEditor.close()
-        $image = $("<img src='"+newURL+"' />").hide()
-        $editImage = $("<div class='edit-image'><a href='#'>Cambiar imagen</a></div>")
-        @product.set({ remote_image_url: newURL })
-        @.$(".empty-image").fadeOut 500, =>
-          @.$(".empty-image").remove()
-          $editImage.appendTo(@.$(".image"))
-          $image.appendTo(@.$(".image")).fadeIn 1000
-      onError: (errorobj) ->
-        console.log errorobj
-    )
+    #featherEditor = new Aviary.Feather(
+    #  apiKey: 'd6671c0d5'
+    #  apiVersion: 2
+    #  appendTo: ""
+    #  cropPresets: ["4:3"]
+    #  fileFormat: "png"
+    #  onSave: (imageID, newURL) =>
+    #    featherEditor.close()
+    #    $image = $("<img src='"+newURL+"' />")
+    #    @product.set({ remote_image_url: newURL })
+    #    if @.$(".empty-image").length > 0
+    #      $editImage = $("<div class='edit-image'><a href='#'>Cambiar imagen</a></div>")
+    #      @.$(".image").fadeOut 500, =>
+    #        @.$(".empty-image").remove()
+    #        $image.appendTo(@.$(".image"))
+    #        @.$(".image").fadeIn 1000, =>
+    #          $editImage.appendTo(@.$(".image"))
+    #    else
+    #      @.$(".image").fadeOut 500, =>
+    #        @.$(".image img").remove()
+    #        $image.appendTo(@.$(".image"))
+    #        @.$(".image").fadeIn 1000
+    #  onError: (errorobj) ->
+    #    console.log errorobj
+    #)
 
-    $(".empty-image").live "click", ->
+    $(".empty-image, .edit-image").live "click", =>
       filepicker.getFile(
         filepicker.MIMETYPES.IMAGES, 
         {
           'modal': true,
           'services': ['My Computer', 'Facebook', 'Images', 'URL', 'Webcam', 'Gmail', 'Dropbox']
         },
-        (url, token, data) ->
-          img = $('<img id="#editimage"/>')
-          img.attr("src", url)
-          featherEditor.launch({
-            image: img[0],
-            url: url
-          })
+        (newURL, token, data) =>
+          #img = $('<img id="#editimage"/>')
+          #img.attr("src", newURL)
+          #featherEditor.launch({
+          #  image: img[0],
+          #  url: newURL
+          #})
+          $image = $("<img src='"+newURL+"' />")
+          @product.set({ remote_image_url: newURL })
+          if @.$(".empty-image").length > 0
+            $editImage = $("<div class='edit-image'><a href='#'>Cambiar imagen</a></div>")
+            @.$(".image").fadeOut 500, =>
+              @.$(".empty-image").remove()
+              $image.appendTo(@.$(".image"))
+              @.$(".image").fadeIn 1000, =>
+                $editImage.appendTo(@.$(".image"))
+          else
+            @.$(".image").fadeOut 500, =>
+              @.$(".image img").remove()
+              $image.appendTo(@.$(".image"))
+              @.$(".image").fadeIn 1000
       )
       return false
     @

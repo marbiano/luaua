@@ -65,16 +65,13 @@ footer{
 .product{
 	@include pie-clearfix;
 	.image{
-		width: 578px;
-		height: 432px;
-		border: 1px solid #222;
-		@include border-radius(5px);
+		width: 580px;
+		height: auto;
 		float: left;
 		position: relative;
 		overflow: hidden;
 		img{
-			min-width: 100%;
-			min-height: 100%;
+			width: 100%;
 		}
 	}
 	.details{
@@ -110,8 +107,10 @@ form.product{
 	}
 
 	.empty-image{
-		height: 320px;
-		padding-top: 112px;
+		height: 300px;
+		padding-top: 132px;
+		border: 1px solid #222;
+		@include border-radius(5px);
 		width: 578px;
 		text-align: center;
 		cursor: pointer;
@@ -142,16 +141,26 @@ form.product{
 
 	.edit-image{
 		position: absolute;
-		bottom: 0;
+		top: 50%;
+		margin-top: -17px;
 		left: 0;
 		width: 100%;
 		text-align: center;
+		display: none;
 		a{
 			background: #d21e4d;
 			color: #fff;
 			padding: 10px;
 			text-decoration: none;
+			@include border-radius(5px);
+			&:hover{
+				background: #222;
+			}
 		}
+	}
+
+	.image:hover .edit-image{
+		display: block;
 	}
 
 	.actions input{
