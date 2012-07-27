@@ -7,7 +7,7 @@ CarrierWave.configure do |config|
       :region                 => 'us-east-1'
     }
 
-    config.fog_directory  = "zoko-#{Rails.env}-kick"
+    config.fog_directory  = "luaua"
     #config.fog_host       = 'https://assets.example.com'
     config.fog_public     = true
     config.fog_attributes = {'Cache-Control' => 'max-age=315576000'}
