@@ -83,6 +83,7 @@ footer{
 form.product{
 	.field{
 		margin-bottom: 15px;
+		position: relative;
 	}
 
 	input, textarea{
@@ -94,6 +95,7 @@ form.product{
 		padding: 5px;
 		&:focus{
 			outline: none;
+			border: 1px solid #999;
 		}
 	}
 
@@ -123,11 +125,6 @@ form.product{
 			margin: 0;
 		}
 
-		p.specs{
-			margin-top: 20px;
-			color: #999;
-		}
-
 		&:hover{
 			color: #d21e4d;
 			h2{
@@ -137,6 +134,48 @@ form.product{
 				color: #d21e4d;
 			}
 		}
+	}
+
+	.image .field-error{
+		color: #f00;
+		display: inline-block;
+		margin-top: 10px;
+	}
+
+	.image .field_with_errors{
+		border: 1px solid #f00;
+	}
+
+	.field_with_errors input, .field_with_errors textarea{
+		border: 1px solid #f00;
+	}
+
+	.field_being_fixed input, .field_being_fixed textarea{
+		border: 1px solid #999;
+	}
+
+	.field .field-error{
+		background: #f00;
+		color: #fff;
+		padding: 0 5px;
+		position: absolute;
+		top: -23px;
+		left: 2px;
+		z-index: 20;
+		display: none;
+		&:after{
+	    content: "";
+	    width: 7px;
+	    height: 7px;
+	    position: absolute;
+	    top: 100%;
+	    left: 8px;
+	    background: image-url('arrow-message-error.png') no-repeat;
+	  }
+	}
+
+	.price .field-error{
+		left: 16px;
 	}
 
 	.edit-image{
@@ -174,6 +213,14 @@ form.product{
 		&:hover{
 			background: #222;
 		}
+	}
+
+	.char-count{
+		position: absolute;
+		bottom: 5px;
+		right: 20px;
+		font-size: 24px;
+		color: #e3e3e3;
 	}
 }
 

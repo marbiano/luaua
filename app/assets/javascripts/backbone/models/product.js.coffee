@@ -7,6 +7,8 @@ class Luaua.Models.Product extends Backbone.Model
     description: null
     location: null
     seller: null
+    seller_id: null
+    seller_email: null
     image: null
     remote_image_url: null
 

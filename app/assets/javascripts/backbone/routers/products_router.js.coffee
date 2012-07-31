@@ -28,6 +28,7 @@ class Luaua.Routers.ProductsRouter extends Backbone.Router
     product = new Luaua.Models.Product({ id : id })
     product.fetch(
       success: (model, response) =>
+        console.log model
         @view = new Luaua.Views.Products.ShowView({ product : model })
         $(".main").fadeOut 500, =>
           $(".main").html(@view.render().el).fadeIn 500

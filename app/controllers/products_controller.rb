@@ -43,7 +43,17 @@ class ProductsController < ApplicationController
     @product = Product.new(params[:product])
 
     respond_to do |format|
-      if @product.save
+      if @product.valid?
+        user = User.where(:email => params[:product][:seller_email])
+        if user.empty?
+          password = Devise.friendly_token.first(6)
+          seller = User.new(:email => params[:product][:seller_email], :password => password, :password_confirmation => password, :active => false)
+          seller.save
+        else
+          seller = user.first
+        end
+        @product.seller_id = seller.id
+        @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render json: @product, status: :created, location: @product }
       else

@@ -7,11 +7,10 @@ class Luaua.Views.Products.NewView extends Backbone.View
     "submit #new-product": "save"
 
   initialize: (options) ->
+    _.bindAll(@, 'render', 'save', 'render_errors', 'limit_field')
     @product = options.product
 
-    @product.bind("change:errors", () =>
-      this.render()
-    )
+    @description_max_chars = 200
 
   save: (e) ->
     e.preventDefault()
@@ -23,11 +22,11 @@ class Luaua.Views.Products.NewView extends Backbone.View
     @product.save(
       @product.toJSON(),
       success: (product) =>
-        @product = product
-        window.location.hash = "/#{@product.id}"
+        window.location.hash = "/#{product.id}"
 
-      error: (products, jqXHR) =>
+      error: (product, jqXHR) =>
         @product.set({errors: $.parseJSON(jqXHR.responseText)})
+        @render_errors()
     )
 
   render: ->
@@ -91,4 +90,46 @@ class Luaua.Views.Products.NewView extends Backbone.View
               @.$(".image").fadeIn 1000
       )
       return false
+
+    @.$(".field_with_errors input, .field_with_errors textarea").live "focus", (e) => 
+      $(e.target).parent().find('span.field-error').fadeIn 500
+      $(e.target).parent().addClass("field_being_fixed")
+    
+    @.$(".field_with_errors input, .field_with_errors textarea").live "blur", (e) =>
+      $(e.target).parent().removeClass("field_being_fixed")
+      if $(e.target).val() != ""
+        $(e.target).parent().removeClass("field_with_errors")  
+      $(e.target).parent().find('span.field-error').fadeOut 100
+
+
+    @.$(".char-count").text(@description_max_chars)
+
+    @.$("textarea#description").live 'keyup', =>
+      @limit_field(@.$("textarea#description"), @.$(".char-count"), @description_max_chars)
+
+    @.$("textarea#description").live 'keydown', =>
+      @limit_field(@.$("textarea#description"), @.$(".char-count"), @description_max_chars)
+
     @
+
+  render_errors: ->
+    @.$('span.field-error').hide().remove()
+    @.$(".field_with_errors").toggleClass('field_with_errors')
+   
+    _.each(@product.get('errors'), (errs, field) =>
+      txt = errs.join(", ")
+      if field == "remote_image_url"
+        @.$(".empty-image").addClass("field_with_errors")
+        $('<span class="field-error">' + txt + '</span>').hide().appendTo(@.$(".empty-image")).fadeIn 500
+      else
+        $parent = @.$('#' + field).parent()
+        $parent.addClass("field_with_errors")
+        $ $('<span class="field-error">' + txt + '</span>').hide().appendTo($parent)
+    )
+
+
+  limit_field: (field, counter, max) ->
+    if field.val().length > max
+      field.val(field.val().substring(0, max))
+    counter.text(max - field.val().length)
+    @product.set({description: field.val()})
