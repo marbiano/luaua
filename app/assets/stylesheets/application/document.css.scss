@@ -44,8 +44,8 @@ footer{
 	width: 940px;
 	margin: 0 auto;
 	text-align: center;
-	border-top: 1px solid #f3f3f3;
-	color: #ddd;
+	border-top: 1px solid #eee;
+	color: #ccc;
 }
 
 
@@ -60,6 +60,8 @@ footer{
 
 .home-action{
 	text-align: center;
+	font-size: 18px;
+	margin-top: 80px;
 }
 
 .product{
@@ -111,7 +113,7 @@ form.product{
 	.empty-image{
 		height: 300px;
 		padding-top: 132px;
-		border: 1px solid #222;
+		border: 1px solid #999;
 		@include border-radius(5px);
 		width: 578px;
 		text-align: center;
