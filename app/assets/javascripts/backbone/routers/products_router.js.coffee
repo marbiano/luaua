@@ -1,12 +1,12 @@
 class Luaua.Routers.ProductsRouter extends Backbone.Router
   initialize: (options) ->
-    @products = new Luaua.Collections.ProductsCollection()
+    #@products = new Luaua.Collections.ProductsCollection()
     #@products.reset options.products
 
   routes:
-    "/new"      : "new"
+    "new"      : "new"
     "index"    : "index"
-    ":id/edit" : "edit"
+    #":id/edit" : "edit"
     ":id"      : "show"
     ".*"        : "index"
 
@@ -34,8 +34,8 @@ class Luaua.Routers.ProductsRouter extends Backbone.Router
           $(".main").html(@view.render().el).fadeIn 500
     )
 
-  edit: (id) ->
-    products = @products.get(id)
-
-    @view = new Luaua.Views.Products.EditView(model: products)
-    $("#products").html(@view.render().el)
+  #edit: (id) ->
+  #  products = @products.get(id)
+  #
+  #  @view = new Luaua.Views.Products.EditView(model: products)
+  #  $("#products").html(@view.render().el)

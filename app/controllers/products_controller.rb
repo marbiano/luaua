@@ -21,6 +21,22 @@ class ProductsController < ApplicationController
     end
   end
 
+  # GET /products/new
+  # GET /products/new.json
+  #def new
+  #  @product = Product.new
+
+  #  respond_to do |format|
+  #    format.html # new.html.erb
+  #    format.json { render json: @product }
+  #  end
+  #end
+
+  # GET /products/1/edit
+  #def edit
+  #  @product = Product.find(params[:id])
+  #end
+
   # POST /products
   # POST /products.json
   def create
@@ -68,7 +84,7 @@ class ProductsController < ApplicationController
   #def destroy
   #  @product = Product.find(params[:id])
   #  @product.destroy
-  #
+
   #  respond_to do |format|
   #    format.html { redirect_to products_url }
   #    format.json { head :no_content }
