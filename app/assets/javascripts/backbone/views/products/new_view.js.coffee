@@ -18,6 +18,8 @@ class Luaua.Views.Products.NewView extends Backbone.View
 
     @product.unset("errors")
 
+    $('<div class="loading"><span>Publicando tu aviso. Un segundo...</span></div>').hide().appendTo($("body")).fadeIn 250
+
     #@collection.create(@product.toJSON(),
     @product.save(
       @product.toJSON(),
@@ -25,6 +27,8 @@ class Luaua.Views.Products.NewView extends Backbone.View
         window.location.hash = "/#{product.id}"
 
       error: (product, jqXHR) =>
+        $(".loading").fadeOut 500, =>
+          $(".loading").remove()
         @product.set({errors: $.parseJSON(jqXHR.responseText)})
         @render_errors()
     )

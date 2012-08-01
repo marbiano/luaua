@@ -9,8 +9,8 @@
     <dl>
     	<dt>Donde</dt>
     	<dd><%= location %></dd>
-    	<dt>Vendedor</dt>
-    	<dd><a href="mailto:<%= seller.email %>"><%= seller.email %></a></dd>
+      <dt class="seller">Vendedor</dt>
+    	<dd class="seller"><a href="mailto:<%= seller ? seller.email : "" %>"><%= seller ? seller.email : "" %></a></dd>
     	<dt>Compartir</dt>
     	<dd><a href="http://twitter.com/share" class="share-twitter">Twitter</a> / <a href="http://www.facebook.com/sharer.php" class="share-facebook">Facebook</a> / <a href="" class="share-email">Email</a></dd>
 </div>

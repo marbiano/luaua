@@ -16,6 +16,8 @@ class Luaua.Views.Products.ShowView extends Backbone.View
 		email_link = "mailto:email@email.com?subject="+encodeURIComponent(@product.get("name"))+" en venta&body="+encodeURIComponent(@product.get("description"))+"%0A%0A"+window.location
 		@.$(".share-email").attr("href", email_link)
 
+		if !@product.get('seller')?
+			@.$('.seller').remove()
 		@
 
 	share_twitter: (e) ->

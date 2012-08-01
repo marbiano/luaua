@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
   validates :description, :presence => { :message => "Tu aviso necesita una breve descripcion." }
   validates :location, :presence => { :message => "Tu aviso necesita una ubicacion." }
   validates :remote_image_url, :presence => { :message => "Tu aviso necesita una imagen." }
-  validates :seller_email, :presence => { :message => "Tu aviso necesita un email del vendedor." }
+  validates :seller_email, :email_format => { :message => "Tu aviso necesita un email del vendedor." }
 
   belongs_to :seller, :class_name => "User", :foreign_key => "seller_id"
 

@@ -30,6 +30,8 @@ gem 'haml-rails'
 gem 'html5-rails'
 gem 'rails-backbone'
 
+gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
