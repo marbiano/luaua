@@ -59,9 +59,28 @@ footer{
 }
 
 .home-action{
+	list-style: none;
 	text-align: center;
-	font-size: 18px;
 	margin-top: 80px;
+	a:link, a:visited{
+		color: #ccc;
+		font-size: 16px;
+		&:hover{
+			background: #ccc;
+			color: #fff;
+		}
+	}
+	li.main-action{
+		margin-bottom: 20px;
+		a{
+			color: #d21e4d;
+			font-size: 18px;
+			&:hover{
+				background: #d21e4d;
+				color: #fff;
+			}
+		}
+	}
 }
 
 .product{
@@ -294,5 +313,24 @@ div.product{
 		width: 100%;
 		text-align: center;
 
+	}
+}
+
+div.about{
+	width: 580px;
+	margin: 0 auto;
+	h2{
+		font-family: Nobile, Arial, sans-serif;
+		font-size: 24px;
+		font-weight: bold;
+		font-style: italic;
+		line-height: 29px;
+		color: #111;
+		margin: 30px 0 0;
+	}
+	p{
+		font-size: 18px;
+		line-height: 24px;
+		color: #777;
 	}
 }

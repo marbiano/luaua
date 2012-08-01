@@ -4,11 +4,12 @@ class Luaua.Routers.ProductsRouter extends Backbone.Router
     #@products.reset options.products
 
   routes:
+    "que"    : "about"
     "new"      : "new"
     "index"    : "index"
-    #":id/edit" : "edit"
     ":id"      : "show"
-    ".*"        : "index"
+    ".*"       : "index"
+    #":id/edit" : "edit"
 
 
   index: ->
@@ -30,19 +31,21 @@ class Luaua.Routers.ProductsRouter extends Backbone.Router
     product.fetch(
       success: (model, response) =>
         if $(".loading").length > 0
-          console.log 'hey'
           @view = new Luaua.Views.Products.ShowView({ product : model })
           $(".main").html(@view.render().el).fadeIn 500, =>
             $(".loading").fadeOut 500, =>
               $(".loading").remove()
         else
-          console.log 'hey2'
-          console.log model
           @view = new Luaua.Views.Products.ShowView({ product : model })
           $(".main").fadeOut 500, =>
             $(".main").html(@view.render().el).fadeIn 500
     )
 
+  about: ->
+    @view = new Luaua.Views.Products.AboutView()
+    $(".main").fadeOut 500, =>
+      $(".main").html(@view.render().el).fadeIn 500
+  
   #edit: (id) ->
   #  products = @products.get(id)
   #
