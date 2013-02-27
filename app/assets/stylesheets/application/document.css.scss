@@ -8,40 +8,55 @@
 
 html {}
 body {
-	font-family: 'Lekton', Arial, sans-serif;
+	font-family: 'Lato', Arial, sans-serif;
+	font-weight: 300;
 	font-size: 14px;
 	line-height: 21px;
 }
 header{
-	background: #f3f3f3;
-	padding: 30px 0;
-	border-bottom: 1px solid #fff;
-	@include box-shadow(#f3f3f3 0 1px 0 0);
 	.container{
-		width: 940px;
-		margin: 0 auto;
-		text-align: center;
+		width: 1020px;
+		margin: 15px auto 0;
 	}
 	.logo{
-		width: 82px;
-		height: 33px;
 		display: inline-block;
 		a{
-			display: inline-block;
-			width: 82px;
-			height: 33px;
+			display: block;
+			padding-left: 47px;
+			height: 40px;
+			background: image-url('logo-simple.png') no-repeat;
+			@include transition(background-position 0.1s);
+			span{
+				display: inline-block;
+				@include opacity(0);
+				font-family: "Open Sans", Arial, sans-serif;
+				font-weight: 800;
+				font-size: 14px;
+				line-height: 40px;
+				color: #572b85;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				@include transition(opacity 0.3s);
+			}
+			&:hover{
+				background-position: 0 -40px;
+				text-decoration: none;
+				span{
+					@include opacity(1);
+				}
+			}
 		}
 	}
 }
 
 .main{
 	min-height: 300px;
-	width: 940px;
-	margin: 40px auto;
+	width: 1020px;
+	margin: 50px auto;
 }
 
 footer{
-	width: 940px;
+	width: 1020px;
 	margin: 0 auto;
 	text-align: center;
 	border-top: 1px solid #eee;
@@ -50,9 +65,9 @@ footer{
 
 
 .main a:link, .main a:visited{
-	color: #d21e4d;
+	color: #572b85;
 	&:hover{
-		background: #d21e4d;
+		background: #572b85;
 		color: #fff;
 		text-decoration: none;
 	}
@@ -89,7 +104,7 @@ footer{
 	.image{
 		width: 580px;
 		height: auto;
-		float: left;
+		float: right;
 		position: relative;
 		overflow: hidden;
 		img{
@@ -97,8 +112,8 @@ footer{
 		}
 	}
 	.details{
-		width: 320px;
-		float: right;
+		width: 400px;
+		float: left;
 	}
 }
 
@@ -248,33 +263,32 @@ form.product{
 
 div.product{
 	h1{
-		font-family: Nobile, Arial, sans-serif;
-		font-size: 24px;
-		font-weight: bold;
-		font-style: italic;
-		line-height: 29px;
+		font-family: "Open Sans", Arial, sans-serif;
+		font-weight: 800;
+		font-size: 30px;
+		line-height: 36px;
 		color: #111;
-		margin: 0 0 10px;
+		margin: 5px 0 10px;
+		text-transform: uppercase;
 	}
 	.price{
+		font-family: "Cabin Sketch", Arial, sans-serif;
+		font-weight: 400;
+		letter-spacing: 2px;
+		color: #afd029;
 		.currency{
-			font-weight: normal;
-			font-size: 14px;
+			font-size: 17px;
 			position: relative;
 			bottom: 1px;
 			padding-right: 1px;
 		}
-		color: #d21e4d;
-		font-size: 18px;
-		font-weight: bold;
-		margin: 0 0 20px;
+		font-size: 19px;
+		margin: 0 0 25px;
 	}
 
 	dl{
 		margin-top: 20px;
 		dt{
-			font-family: Nobile, Arial, sans-serif;
-			font-style: italic;
 			color: darken(#fff, 25%);
 			text-transform: uppercase;
 			font-size: 12px;
@@ -295,6 +309,31 @@ div.product{
 			&:hover{
 				background: #3b5a9b;
 			}
+		}
+	}
+	.action-button{
+		display: inline-block;
+		font-family: "Open Sans", Arial, sans-serif;
+		font-weight: 800;
+		font-size: 18px;
+		line-height: 1;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		background: #572b85;
+		color: #fff;
+		padding: 1em 3em;
+		text-align: center;
+		text-decoration: none;
+		margin-top: 25px;
+		border: 1px solid transparent;
+		background: #fff;
+		border-color: #572b85;
+		color: #572b85;
+		@include transition(background 0.1s, color 0.1s, border 0.1s);
+		&:hover{
+			background: #572b85;
+			border-color: transparent;
+			color: #fff;
 		}
 	}
 }
@@ -333,5 +372,20 @@ div.about{
 		font-size: 18px;
 		line-height: 24px;
 		color: #777;
+	}
+}
+
+.products.index{
+	header, footer{
+		display: none;
+	}
+	img{
+		position: absolute;
+		width: 600px;
+		height: 208px;
+		left: 50%;
+		top: 50%;
+		margin-left: -300px;
+		margin-top: -104px;
 	}
 }
