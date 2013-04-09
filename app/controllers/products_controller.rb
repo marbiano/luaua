@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    #@products = Product.all
+    @products = Product.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -23,14 +23,14 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   # GET /products/new.json
-  #def new
-  #  @product = Product.new
+  def new
+    @product = Product.new
 
-  #  respond_to do |format|
-  #    format.html # new.html.erb
-  #    format.json { render json: @product }
-  #  end
-  #end
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @product }
+    end
+  end
 
   # GET /products/1/edit
   #def edit
@@ -39,21 +39,13 @@ class ProductsController < ApplicationController
 
   # POST /products
   # POST /products.json
+
   def create
     @product = Product.new(params[:product])
+    @product.user_id = current_user
 
     respond_to do |format|
-      if @product.valid?
-        user = User.where(:email => params[:product][:seller_email])
-        if user.empty?
-          password = Devise.friendly_token.first(6)
-          seller = User.new(:email => params[:product][:seller_email], :password => password, :password_confirmation => password, :active => false)
-          seller.save
-        else
-          seller = user.first
-        end
-        @product.seller_id = seller.id
-        @product.save
+      if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render json: @product, status: :created, location: @product }
       else
@@ -62,32 +54,55 @@ class ProductsController < ApplicationController
       end
     end
   end
+  #def create
+    #@product = Product.new(params[:product])
+
+    #respond_to do |format|
+      #if @product.valid?
+        #user = User.where(:email => params[:product][:seller_email])
+        #if user.empty?
+          #password = Devise.friendly_token.first(6)
+          #seller = User.new(:email => params[:product][:seller_email], :password => password, :password_confirmation => password, :active => false)
+          #seller.save
+        #else
+          #seller = user.first
+        #end
+        #@product.seller_id = seller.id
+        #@product.save
+        #format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        #format.json { render json: @product, status: :created, location: @product }
+      #else
+        #format.html { render action: "new" }
+        #format.json { render json: @product.errors, status: :unprocessable_entity }
+      #end
+    #end
+  #end
 
   # PUT /products/1
   # PUT /products/1.json
-  #def update
-  #  @product = Product.find(params[:id])
+  def update
+    @product = Product.find(params[:id])
 
-  #  respond_to do |format|
-  #    if @product.update_attributes(params[:product])
-  #      format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-  #      format.json { head :no_content }
-  #    else
-  #      format.html { render action: "edit" }
-  #      format.json { render json: @product.errors, status: :unprocessable_entity }
-  #    end
-  #  end
-  #end
+    respond_to do |format|
+      if @product.update_attributes(params[:product])
+        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /products/1
   # DELETE /products/1.json
-  #def destroy
-  #  @product = Product.find(params[:id])
-  #  @product.destroy
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
 
-  #  respond_to do |format|
-  #    format.html { redirect_to products_url }
-  #    format.json { head :no_content }
-  #  end
-  #end
+    respond_to do |format|
+      format.html { redirect_to products_url }
+      format.json { head :no_content }
+    end
+  end
 end
