@@ -1,8 +1,6 @@
 class Product < ActiveRecord::Base
 require 'carrierwave/orm/activerecord'
-  attr_accessor :seller_email
   attr_accessible :description, :location, :name, :price, :seller_email, :seller_id, :image, :remote_image_url
-
   mount_uploader :image, ImageUploader
 
   validates :name, :presence => { :message => "Tu aviso necesita un titulo." }
