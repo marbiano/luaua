@@ -1,4 +1,18 @@
-=content_for :javascripts do
-  :javascript
-    new Luaua.Routers.ProductsRouter();
-    Backbone.history.start();
+%h1 Lista de Productos Publicados
+%table
+  %thead
+    %tr
+      %th user_id
+      %th email
+      %th name
+      %th Price
+  %tbody
+    - for product in @products
+      %tr
+        %td= product.user_id
+        %td= product.seller_email
+        %td= product.name
+        %td= product.price
+        -#%td= link_to 'Edit', edit_product_path( product )    
+        %td= link_to 'Destroy', product, confirm: 'Are you sure?', method: :delete 
+        %td= link_to 'New Product', new_product_path 
