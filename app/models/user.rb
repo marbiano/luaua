@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :active
   # attr_accessible :title, :body
-
-  has_many :products, :foreign_key => "seller_id"
+  has_many :products
+  #has_many :products, :foreign_key => "seller_id"
 end
