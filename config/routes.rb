@@ -1,9 +1,7 @@
 Luaua::Application.routes.draw do
+  devise_for :users, :controllers => { :sessions => 'sessions' }
   devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-
- devise_for :users
- resources :products
+  resources :products
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -55,6 +53,7 @@ Luaua::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'products#index'
+  ActiveAdmin.routes(self)
 
   # See how all your routes lay out with "rake routes"
 
