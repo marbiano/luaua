@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index]
+
   # GET /products
   # GET /products.json
   def index
@@ -43,7 +44,7 @@ before_filter :authenticate_user!
 
   def create
     @product = Product.new(params[:product])
-    @product.user_id = current_user
+    @product.user_id = current_user.id
 
     respond_to do |format|
       if @product.save
