@@ -1,0 +1,28 @@
+<h3> Productos publicados <%=current_user.id%></h3>
+<table>
+  <tr>
+    <th>Título</th>
+    <th>Descripción</th>
+    <th>Precio</th>
+    <th>Email del vendedor</th>
+    <th>Ubicación</th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%= product.name %></td>
+    <td><%= product.description %></td>
+    <td><%= product.price %></td>
+    <td><%= product.seller_email %></td>
+    <td><%= product.location %></td>
+    <td><%= link_to 'Show', product %></td>
+    <td><%= link_to 'Edit', edit_product_path(product) %></td>
+    <td><%= link_to 'Destroy', product, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+    <td><%= link_to 'New Product', new_product_path%> </td>
+    <td><%= link_to 'Back', products_path %></td>
+<br />
+
+
