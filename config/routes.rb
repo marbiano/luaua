@@ -1,5 +1,7 @@
 Luaua::Application.routes.draw do
   devise_for :users, :controllers => { :sessions => 'sessions' }
+  get '/products/show_all' => 'products#show_all'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   resources :products
 
