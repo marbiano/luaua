@@ -9,6 +9,7 @@ require 'carrierwave/orm/activerecord'
  # validates :location, :presence => { :message => "Tu aviso necesita una ubicacion." }
  # validates :remote_image_url, :presence => { :message => "Tu aviso necesita una imagen." }
  # validates :seller_email, :email_format => { :message => "Tu aviso necesita un email del vendedor." }
+  validates :user_id, :presence => { :message => "Debes logearte en el sistema"}
   
   belongs_to :user
   #belongs_to :seller, :class_name => "User", :foreign_key => "seller_id"
