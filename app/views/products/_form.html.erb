@@ -12,26 +12,33 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label 'Título' %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :price %><br />
+    <%= f.label 'Precio' %><br />
     <%= f.number_field :price %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label 'Email vendedor' %><br />
+    <%= f.text_field :seller_email %>
+  </div>
+    
+  <div class="field">
+    <%= f.label 'Descripcion' %><br />
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :location %><br />
+    <%= f.label 'Ubicación' %><br />
     <%= f.text_field :location %>
+    <% if user_signed_in? %>
+      <%= link_to "Utilizar mi ubicación", root_path %>
+    <%else%>
+      <%= link_to "Sign in", new_user_session_path %>
+    <%end%>
   </div>
-  <div class="field">
-    <%= f.label :seller_email %><br />
-    <%= f.text_field :seller_email %>
-  </div>
+
   <div class="actions">
-    <%= f.submit %>
+   <%= f.submit %>
   </div>
 <% end %>
