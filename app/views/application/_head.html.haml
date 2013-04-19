@@ -23,6 +23,7 @@
   /= javascript_include_tag "polyfills"
 
   = csrf_meta_tag
-  = link_to "Sign in", new_user_session_path 
-  = link_to "Sign out", destroy_user_session_path, :method => :delete  
+- if user_signed_in? 
+  = link_to "Sign out", destroy_user_session_path, :method => :delete
+ 
 
