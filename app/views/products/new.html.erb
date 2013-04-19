@@ -1,5 +1,11 @@
-<h1>New product</h1>
-
+<h3>Crear aviso</h3>
+<% if user_signed_in? %>
+   <%= current_user.email%><br/>
+   <% if current_user.products.count > 0 %>
+    <%= link_to 'Avisos publicados', products_show_all_path %> <br/>
+   <% end %>
+<% end %><br/>
 <%= render 'form' %>
 
-<%= link_to 'Back', products_path %>
+
+
