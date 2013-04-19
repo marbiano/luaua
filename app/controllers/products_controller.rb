@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index]
+  #before_filter :authenticate_user!, :except => [:index]
 
   # GET /products
   # GET /products.json
@@ -35,26 +35,26 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1/edit
-  #def edit
-  #  @product = Product.find(params[:id])
-  #end
+  def edit
+    @product = Product.find(params[:id])
+  end
 
   # POST /products
   # POST /products.json
 
   def create
     @product = Product.new(params[:product])
-    @product.user_id = current_user.id
-
     respond_to do |format|
-      if @product.save
+     if current_user.nil? 
+        format.html { redirect_to new_user_session_path, :notice => "Debe loggearse"}
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      else
+        @product.user_id = current_user.id
+        @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render json: @product, status: :created, location: @product }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
-    end
+     end
   end
   #def create
     #@product = Product.new(params[:product])
@@ -105,6 +105,15 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to products_url }
       format.json { head :no_content }
+    end
+  end
+
+  def show_all
+   @products = current_user.products
+   respond_to do |format|
+
+      format.html # show_all.html.erb
+      format.json { render json: @products }
     end
   end
 end
